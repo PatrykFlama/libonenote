@@ -1,0 +1,33 @@
+[package]
+name = "libonenote"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+description = "Unofficial high-level API for Microsoft OneNote files"
+license = "MIT"
+repository = "https://github.com/PatrykFlama/libonenote"
+readme = "README.md"
+keywords = ["onenote", "notes", "parser"]
+categories = ["parser-implementations"]
+
+[workspace]
+resolver = "2"
+members = [
+    ".",
+    "crates/onenote-cli",
+]
+
+[dependencies]
+cab = "0.6"
+onenote_parser = { version = "1.1.0", features = ["native-fs", "onepkg"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+time = { version = "0.3.45", features = ["formatting"] }
+typed-path = "0.12"
+
+[dev-dependencies]
+tempfile = "3.15"
+
+[patch.crates-io]
+onenote_parser = { git = "https://github.com/msiemens/onenote.rs", rev = "5138a39a3f4e72b840932f9872fecde52fa9da60" }
